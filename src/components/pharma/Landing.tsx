@@ -6,6 +6,25 @@ import {
 import { HeroScene, MoleculeScene, ShowcaseScene } from "./Scene3D";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { BranchGlobe } from "./BranchGlobe";
+import syringePhoto from "@/assets/syringe.jpg";
+
+function ShowcaseMedia({ item, priority = false }: { item: "capsule" | "bottle" | "syringe" | "tablet"; priority?: boolean }) {
+  if (item === "syringe") {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <img
+          src={syringePhoto}
+          alt="Precision-dose medical syringe"
+          width={1024}
+          height={1024}
+          loading={priority ? undefined : "lazy"}
+          className="h-full w-full object-contain drop-shadow-[0_10px_30px_oklch(0.55_0.18_240/0.25)]"
+        />
+      </div>
+    );
+  }
+  return <ShowcaseScene item={item} />;
+}
 
 function GlowOrb({ className = "" }: { className?: string }) {
   return <div aria-hidden className={`pointer-events-none absolute rounded-full blur-3xl ${className}`} />;
@@ -455,7 +474,7 @@ export function Landing() {
               className="group relative overflow-hidden rounded-3xl glass p-4 shadow-float transition hover:-translate-y-1"
             >
               <div className="relative h-56 w-full">
-                <ShowcaseScene item={s.item} />
+                <ShowcaseMedia item={s.item} />
               </div>
               <div className="mt-2 flex items-center justify-between px-2 pb-2">
                 <div>
@@ -500,7 +519,7 @@ export function Landing() {
                   <StockRing percent={it.stock} color={it.stock < 30 ? "oklch(0.6 0.22 25)" : it.stock < 60 ? "oklch(0.75 0.18 60)" : "oklch(0.6 0.18 235)"} />
                 </div>
                 <div className="mt-3 h-32">
-                  <ShowcaseScene item={it.item} />
+                  <ShowcaseMedia item={it.item} />
                 </div>
                 <div className="mt-2 flex items-center justify-between text-[11px]">
                   <span className="rounded-full glass px-2 py-0.5 text-muted-foreground">Expiry · <span className="font-semibold text-foreground">{it.expiry}</span></span>
