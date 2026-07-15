@@ -1,24 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Landing } from "@/components/pharma/Landing";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Aether Pharma OS — The Future of Pharmacy Management" },
+      { name: "description", content: "A luxury healthcare operating system: intelligent inventory, real-time analytics, and immersive 3D pharmacy operations." },
+      { property: "og:title", content: "Aether Pharma OS" },
+      { property: "og:description", content: "Intelligent inventory, analytics, and healthcare operations in one beautiful experience." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <Landing />;
 }
