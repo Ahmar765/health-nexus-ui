@@ -6,6 +6,25 @@ import {
 import { HeroScene, MoleculeScene, ShowcaseScene } from "./Scene3D";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { BranchGlobe } from "./BranchGlobe";
+import syringePhoto from "@/assets/syringe.jpg";
+
+function ShowcaseMedia({ item, priority = false }: { item: "capsule" | "bottle" | "syringe" | "tablet"; priority?: boolean }) {
+  if (item === "syringe") {
+    return (
+      <div className="flex h-full w-full items-center justify-center">
+        <img
+          src={syringePhoto}
+          alt="Precision-dose medical syringe"
+          width={1024}
+          height={1024}
+          loading={priority ? undefined : "lazy"}
+          className="h-full w-full object-contain drop-shadow-[0_10px_30px_oklch(0.55_0.18_240/0.25)]"
+        />
+      </div>
+    );
+  }
+  return <ShowcaseScene item={item} />;
+}
 
 function GlowOrb({ className = "" }: { className?: string }) {
   return <div aria-hidden className={`pointer-events-none absolute rounded-full blur-3xl ${className}`} />;
